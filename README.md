@@ -23,18 +23,15 @@ This environment utilizes a **Tiered Intelligence Architecture**. By using **Gem
 ---
 
 ## Delegation & Logic Flow
-
-```mermaid
-graph TD
-    User([User Request]) --> SOTA{Gemini 3.1 Pro\n(TUI Orchestrator)}
+```
+    Me(user)([My Request]) --> SOTA[Gemini 3.1 Pro<br>TUI Orchestrator]
     
-    subgraph "Local Execution Layer (WSL2)"
-        SOTA -- "Software Dev / API Integration" --> Benson[Benson Profile\nQwen 27B Uncensored]
-        SOTA -- "System Audit / Security" --> Ronald[Ronald Profile\nGemma-4 4B]
+    "Local Execution Layer (WSL2)"
+        SOTA -- "Software Dev / API Integration" --> Benson[Benson Profile<br>Qwen 27B Uncensored]
+        SOTA -- "System Audit / Security" --> Ronald[Ronald Profile<br>Gemma-4 4B]
         
         Benson --> B_Tools[Terminal / Files / Discord]
         Ronald --> R_Tools[Log Scrapers / Netstat / Webhooks]
-    end
     
     B_Tools --> Success([Task Completed])
     R_Tools --> Success
